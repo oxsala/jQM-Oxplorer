@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Oxplorer jQM Application</title>
+
+<link rel="stylesheet" href="css/jquery.mobile-1.1.1.min.css"  />
+<link rel="stylesheet" href="css/global.css" />
+
+<script src="js/jquery-1.8.0.min.js" ></script>
+<script src="js/jquery.mobile-1.1.1.min.js" ></script>
+<script src="js/model.js"></script>
+<script src="js/objects.js" ></script>
+<script src="js/first_screen_controller.js" ></script>
+<script src="js/global.js" ></script>
+
+</head>
+
+<body>
+<div data-role="page" id="main_screen">
+	<div data-role="header" data-position="fixed">
+    	<h1>Oxplorer</h1>
+        <a href="index.html" data-role="button" data-icon="refresh" class="ui-btn-right" data-theme="c" data-ajax="false">Refresh</a>
+    </div>
+    <div data-role="content" id="main_screen_content" class="no-padding">
+    </div>
+    <div data-role="footer" data-position="fixed">
+    	<div data-role="navbar">
+            <ul>
+                <li><a href="#create_and_edit_group" id="create-group" data-mini="true"  data-role="button" data-rel="dialog" onclick="EM.addAndEditGroup('new', 'create')" data-transition="slideup">+ Group</a></li>
+                <li><a href="#add_and_remove_mandant" data-mini="true"  data-role="button" data-rel="dialog" data-transition="slideup" onclick="EM.drawMandant()">Mandant</a></li>
+                <li><a href="#move_work_basket" data-mini="true"  data-role="button" onclick="EM.drawMoveWB()">Move WB</a></li>
+                <li><a href="#setting_page" data-mini="true"  data-role="button" data-rel="dialog" data-transition="slideup">More</a></li>
+            </ul>
+        </div><!-- /navbar -->
+    </div>
+</div>
+
+<div data-role="page" id="create_and_edit_group">
+	<div data-role="header" data-position="fixed" data-theme="b">
+    	<h3 id="create_and_edit_group_header">
+        </h3>
+    </div>
+    <div data-role="content">
+    	<div id="create_and_edit_group_place">
+        	<input type='text' name='groupName' id='txtGroupName' />
+        </div>
+        <div class="ui-grid-a">
+        	<span class="ui-block-a"><a href="#main_screen" data-theme="c" data-role="button" id="agree_change_group">Ok</a></span>
+            <span class="ui-block-b"><a href="#main_screen" data-theme="c" data-role="button">Cancel</a></span>
+        </div>
+    </div>
+</div>
+
+<div data-role="page" id="setting_page">
+	<div data-role="header" data-position="fixed" data-theme="b">
+    	<h2>Setting</h2>
+    </div>
+    <div data-role="content" id="setting_page_content">
+    	<div class="ui-grid-solo">
+        	<span class="ui-block-a"><a href="#setting_font_screen" data-role="button" data-rel="dialog" data-theme="c" data-transition="slideup" onclick="App.displayLastFontStyle()">Setting Font</a></span>
+            <span class="ui-block-a"><a href="#setting_language" data-role="button" data-rel="dialog" data-theme="c">Setting Language</a></span>
+            <br />
+            <span class="ui-block-a"><a href="" data-rel="back" data-role="button" data-theme="a">Cancel</a></span>
+        </div>
+    </div>
+</div>
+
+<div data-role="page" id="setting_font_screen">
+	<div data-role="header" data-position="fixed" data-theme="b">
+    	<h3>Setting Font</h3>
+    </div>
+    <div data-role="content" class="no_padding" id="setting_font_screen_content">
+    	<div class="ui-grid-solo" id="font-style-place">
+        	<span class="ui-block-a">
+            	<label for="select_object" class="select">Change for:</label>
+                <select name="select_object" id="select_object">
+                   <option value="group">Group Name</option>
+                   <option value="mandant">Mandant Name</option>
+                   <option value="wb">Work Basket Name</option>
+                </select>
+            </span>
+        </div>
+        <br />
+        <div class="ui-grid-b">
+        	<span class="ui-block-a"><a href="#main_screen" data-role="button" data-theme="a" onClick="EM.fontStyleProcess('ok')">Ok</a></span>
+            <span class="ui-block-b"><a href="#" data-role="button" data-theme="a" onClick="EM.fontStyleProcess('apply')">Apply</a></span>
+            <span class="ui-block-c"><a href="#main_screen" data-role="button" data-theme="a">Cancel</a></span>
+        </div>
+    </div>
+</div>
+
+<div data-role="page" id="add_and_remove_mandant">
+	<div data-role="header" data-theme="b">
+    	<h2>Add and remove mandant</h2>
+    </div>
+    <div data-role="content" id="add_remove_mandant_place">
+        <div id="add_remove_mandant_content">
+        </div>
+        <br />
+        <a href="" data-role="button" data-rel="back" data-theme="a">Cancel</a>
+    </div>
+</div>
+
+<div data-role="page" id="move_work_basket">
+	<div data-role="header" data-theme="a" data-position="fixed">
+    	<h2>Move Work Basket</h2>
+        <a href="#main_screen" data-role="button" data-rel="back" data-theme="c">Oxplorer</a>
+    </div>
+	<div data-role="content" id="move_work_basket_content" class="no-padding">
+    
+    </div>
+    <div data-role="footer" data-theme="a" data-position="fixed">
+    	<div data-role="navbar">
+        	<ul id="movewb-footer-navbar">
+                <li><a href="index.html" data-role="button" data-theme="a" onclick="EM.moveWB()" data-ajax="true">Ok</a></li>
+                <li><a href="index.html#move_work_basket" data-role="button" data-theme="a" onclick="EM.applyMoveWB()" data-ajax="false">Apply</a></li>
+                <li><a href="#main_screen" data-role="button" data-theme="a">Cancel</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div data-role="page" id="setting_language">
+	<div data-role="header" data-theme="b">
+    	<h3>Select Language</h3>
+    </div>
+    <div data-role="content" id="setting_language_content">
+    	<div class="ui-grid-solo">
+        	<span class="ui-block-a"><a href="#main_screen" data-role="button" onclick="setLanguage('en')">EN</a></span>
+            <span class="ui-block-a"><a href="#main_screen" data-role="button" onclick="setLanguage('de')">DE</a></span>
+            <br />
+            <span class="ui-block-a"><a href="#main_screen" data-theme="a" data-role="button">Cancel</a></span>
+        </div>
+    </div>
+</div>
+<script>
+	main();
+</script>
+</body>
+</html>
